@@ -1,18 +1,136 @@
 <html>
 	<head>
+		<title>Gee Mail</title>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
+        for(var i = 0; i<window.geemails.length; i++){
+					//console.log(window.geemails[i]);
+					
+					var dateElem = document.createElement('div')
+					dateElem.className = 'date';
+					dateElem.innerHTML = 'Date: ' + geemails[i].date;
+					main.appendChild(dateElem);
+
+
+					var subjectElem = document.createElement('div')
+					subjectElem.className = 'subject';
+					subjectElem.innerHTML = 'Subject: ' + geemails[i].subject;
+					subjectElem.addEventListener('click', showSubject)
+					main.appendChild(subjectElem);
+					
+					var senderElem = document.createElement('div')
+					subjectElem.className = 'sender'
+					senderElem.innerHTML = 'Sender: ' + geemails[i].sender;
+					main.appendChild(senderElem);
+
+					var bodyElem = document.createElement('div')
+					bodyElem.className = 'body';
+					bodyElem.innerHTML = 'Body: ' +geemails[i].body;
+					subjectElem.appendChild(bodyElem);
+				}
+
+					function showSubject(){
+						var subjectChild = this.querySelectorAll('.body')[0];
+						if(subjectChild.style.display === 'block'){
+							subjectChild.style.display = 'none'
+						} else{
+							subjectChild.style.display = 'block'
+						}
+					}
+					
+				 var inbox = document.getElementById('inboxCount');
+					inbox.innerHTML = 'Inbox Count: ' + geemails.length;
+				// inboxCount.appendChild(inbox);
+				//console.log(getNewMessage())
+					
+			//	var newMail = getNewMessage();
+				// console.log(newMail);
+
+				function createMail(){
+					var newMail = getNewMessage();
+					//console.log(newMail);
+					var newDateElem = document.createElement('div');
+					newDateElem.className = 'newDate';
+					newDateElem.innerHTML = 'Date: ' + newMail.date
+					main.appendChild(newDateElem);
+
+					var newSubjectElem = document.createElement('div');
+					newSubjectElem.className = 'newSubject'
+					newSubjectElem.innerHTML = 'Subject: ' + newMail.subject
+					newSubjectElem.addEventListener('click', showNewBody)
+					main.appendChild(newSubjectElem);
+
+					var newSenderElem = document.createElement('div');
+					newSenderElem.className = 'newSender'
+					newSenderElem.innerHTML = 'Sender: ' + newMail.sender
+					main.appendChild(newSenderElem);
+
+					var newBodyElem = document.createElement('div');
+					newBodyElem.className = 'newBody'
+					newBodyElem.innerHTML = 'Body: ' +newMail.body
+					newSubjectElem.appendChild(newBodyElem);
+
+					var newInbox = document.getElementById('inboxCount');
+					// console.log(newInbox)
+					newInbox.innerHTML = 'Inbox Count: ' + geemails.length++
+					
+					console.log(newDateElem)
+
+				}
+
+				 	function showNewBody(){
+				 	var bodyChild = this.querySelectorAll('.newBody')[0];
+				 		if(bodyChild.style.display === 'block'){
+				 			bodyChild.style.display = 'none'
+				 		} else{
+				 			bodyChild.style.display = 'block'
+					 }
+				 }
+				
+			
+				setInterval(createMail, 2000)
+
+				
+				
+				// setInterval(getNewMessage, 3000)
+				
+			};
+			// console.log(window.geemails)
+			
+			
+
+			
+			
+
+		
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			<h1>Gee Mail</h1>
+			<h2>Welcome back!
+			<div class="image-hover">
+			<img src="https://data.whicdn.com/images/247494176/original.gif" alt="boypanda" class="guypanda">
+				<div class="overlay">
+			<img src="https://media1.tenor.com/images/f22f12f96aa3afa58a0055543dae2e78/tenor.gif?itemid=7253879" alt="girlpanda" class="girlpanda">
+				</div>
+			</div>
+			</h2>
+			<div id="inboxCount"></div>
+				<div class	="dropdown" style="float:left;">
+					<button class="dropbtn">Menu</button>
+					<div class="dropdown-content">
+							<a href="">Inbox</a>
+							<a href="">Spam</a>
+							<a href="">Trash</a>
+							<a href="">Sent</a>
+							<a href="">Drafts</a>
+					</div>
+				</div>
 		</div>
 	</body>
 </html>
